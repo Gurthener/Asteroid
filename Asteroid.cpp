@@ -3,7 +3,7 @@
 int desktopWidth;
 int desktopHeight;
 std::vector<Asteroid> v_Asteroids;
-const int count = 100;
+const int count = 10;
 
 // Makes a window transparent by setting a transparency color.
 bool MakeWindowTransparent(SDL_Window* window, COLORREF colorKey) {
@@ -60,20 +60,34 @@ int main(int argc, char** argv) {
 		glm::vec2 mousePosition = imousePosition;
 
 		for (auto &rock : v_Asteroids) {
-			auto vecToMouse = mousePosition - rock.getPosition();
-			float multiplier = 10000000.0f / pow(glm::length(vecToMouse), 2);
-			vecToMouse = glm::normalize(vecToMouse);
-			vecToMouse *= multiplier;
-			rock.setAcceleration(vecToMouse);
 			rock.move(diffTicks);
 
 			auto sprite = rock.getSpriteRect();
 			auto pos = rock.getPosition();
-			auto size = rock.getSize();
 			SDL_Rect rect1 = {pos.x - 64, pos.y - 64,
 			128, 128};
 			SDL_RenderCopy(renderer, asteroid, &sprite, &rect1);
 		}
+		
+		for (auto& rock : v_Asteroids) {
+			rock.setAcceleration({0,0});
+
+			for (auto& target : v_Asteroids) {
+				if (target.getPosition() != rock.getPosition()) {
+					auto vecToTarget = target.getPosition() - rock.getPosition();
+					float multiplier = 100000.0f / /*pow(*/(glm::length(vecToTarget) * 5)/*, 2)*/;
+					vecToTarget = glm::normalize(vecToTarget);
+					vecToTarget *= multiplier;
+					rock.setAcceleration(rock.getAcceleration() + vecToTarget);
+				}
+			}
+		}
+
+		//auto vecToMouse = mousePosition - rock.getPosition();
+		//float multiplier = 10000000.0f / pow(glm::length(vecToMouse), 2);
+		//vecToMouse = glm::normalize(vecToMouse);
+		//vecToMouse *= multiplier;
+		//rock.setAcceleration(vecToMouse);
 
 		SDL_RenderPresent(renderer);
 
@@ -146,6 +160,10 @@ float Asteroid::getAnimationSpeed() {
 }
 
 Asteroid& Asteroid::move(Uint32 diffTicks) {
+	speed += acceleration * (diffTicks / 1000.0f);
+	if (!((speed.x == 0) && (speed.y == 0)))
+		setAnimationSpeed(glm::length(speed));
+
 	position += speed * (diffTicks / 1000.0f);
 
 	bool collision = false;
@@ -173,13 +191,6 @@ Asteroid& Asteroid::move(Uint32 diffTicks) {
 		//collision = true;
 	}
 
-	//if (collision) {
-	//	setAnimationSpeed(rand() % 500);
-	//}
-
-	speed += acceleration * (diffTicks / 1000.0f);
-	if (!((speed.x == 0) && (speed.y == 0)))
-		setAnimationSpeed(glm::length(speed));
 	return *this;
 }
 
