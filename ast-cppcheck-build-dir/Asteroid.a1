@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2559372181">
+        <error id="shadowVariable" severity="style" msg="Local variable &apos;multiplier&apos; shadows outer variable" verbose="Local variable &apos;multiplier&apos; shadows outer variable" cwe="398" file0="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp">
+            <location file="C:\Users\gurth\source\repos\Asteroid\Asteroid.cpp" line="83" column="12" info="Shadow variable"/>
+            <location file="C:\Users\gurth\source\repos\Asteroid\Asteroid.cpp" line="75" column="10" info="Shadowed declaration"/>
+            <symbol>multiplier</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;tex&apos; should be passed by const reference." verbose="Parameter &apos;tex&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp">
+            <location file="C:\Users\gurth\source\repos\Asteroid\Asteroid.cpp" line="122" column="44"/>
+            <symbol>tex</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;diffTicks&apos; is assigned a value that is never used." verbose="Variable &apos;diffTicks&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp">
+            <location file="C:\Users\gurth\source\repos\Asteroid\Asteroid.cpp" line="47" column="17"/>
+            <symbol>diffTicks</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;collision&apos; is assigned a value that is never used." verbose="Variable &apos;collision&apos; is assigned a value that is never used." cwe="563" file0="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp">
+            <location file="C:\Users\gurth\source\repos\Asteroid\Asteroid.cpp" line="168" column="17"/>
+            <symbol>collision</symbol>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp:9:6" call-funcname="MakeWindowTransparent" call-argnr="2" file="C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp" line="55" col="24" call-argexpr="(unsigned long)(((unsigned char)(0)|((unsigned short)((unsigned char)(0))&lt;&lt;8))|(((unsigned long)(unsigned char)(0))&lt;&lt;16))" call-argvaluetype="0" call-argvalue="0"/>  </FileInfo>
+  <FileInfo check="Class">
+<class name="Asteroid" file="C:/Users/gurth/source/repos/Asteroid/Asteroid.h" line="10" col="1" hash="9237917015796807310"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="MakeWindowTransparent" lineNumber="9"/>
+    <functiondecl functionName="main" lineNumber="22"/>
+    <functiondecl functionName="setPosition" lineNumber="107"/>
+    <functiondecl functionName="setSpeed" lineNumber="112"/>
+    <functiondecl functionName="setAcceleration" lineNumber="117"/>
+    <functiondecl functionName="setTexture" lineNumber="122"/>
+    <functiondecl functionName="setSize" lineNumber="127"/>
+    <functiondecl functionName="setAnimationSpeed" lineNumber="132"/>
+    <functiondecl functionName="getPosition" lineNumber="137"/>
+    <functiondecl functionName="getSpeed" lineNumber="141"/>
+    <functiondecl functionName="getAcceleration" lineNumber="145"/>
+    <functiondecl functionName="getTexture" lineNumber="149"/>
+    <functiondecl functionName="getSize" lineNumber="153"/>
+    <functiondecl functionName="getAnimationSpeed" lineNumber="157"/>
+    <functiondecl functionName="move" lineNumber="161"/>
+    <functiondecl functionName="getSpriteRect" lineNumber="197"/>
+    <functioncall functionName="Asteroid"/>
+    <functioncall functionName="GWL_EXSTYLE"/>
+    <functioncall functionName="GetSystemMetrics"/>
+    <functioncall functionName="GetWindowLong"/>
+    <functioncall functionName="IMG_INIT_PNG"/>
+    <functioncall functionName="IMG_Init"/>
+    <functioncall functionName="IMG_LoadTexture"/>
+    <functioncall functionName="LWA_COLORKEY"/>
+    <functioncall functionName="MakeWindowTransparent"/>
+    <functioncall functionName="SDL_BLENDMODE_BLEND"/>
+    <functioncall functionName="SDL_CreateRenderer"/>
+    <functioncall functionName="SDL_CreateWindow"/>
+    <functioncall functionName="SDL_DestroyWindow"/>
+    <functioncall functionName="SDL_GetGlobalMouseState"/>
+    <functioncall functionName="SDL_GetTicks"/>
+    <functioncall functionName="SDL_GetWindowWMInfo"/>
+    <functioncall functionName="SDL_PollEvent"/>
+    <functioncall functionName="SDL_Quit"/>
+    <functioncall functionName="SDL_RENDERER_PRESENTVSYNC"/>
+    <functioncall functionName="SDL_RenderClear"/>
+    <functioncall functionName="SDL_RenderCopy"/>
+    <functioncall functionName="SDL_RenderPresent"/>
+    <functioncall functionName="SDL_SetRenderDrawBlendMode"/>
+    <functioncall functionName="SDL_SetRenderDrawColor"/>
+    <functioncall functionName="SDL_SetTextureBlendMode"/>
+    <functioncall functionName="SDL_VERSION"/>
+    <functioncall functionName="SDL_WINDOWPOS_CENTERED"/>
+    <functioncall functionName="SDL_WINDOW_BORDERLESS"/>
+    <functioncall functionName="SM_CXSCREEN"/>
+    <functioncall functionName="SM_CYSCREEN"/>
+    <functioncall functionName="SetLayeredWindowAttributes"/>
+    <functioncall functionName="SetWindowLong"/>
+    <functioncall functionName="WS_EX_LAYERED"/>
+    <functioncall functionName="acc"/>
+    <functioncall functionName="animSpd"/>
+    <functioncall functionName="asteroid"/>
+    <functioncall functionName="char"/>
+    <functioncall functionName="colorKey"/>
+    <functioncall functionName="desktopHeight"/>
+    <functioncall functionName="desktopWidth"/>
+    <functioncall functionName="diffTicks"/>
+    <functioncall functionName="event"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getAcceleration"/>
+    <functioncall functionName="getPosition"/>
+    <functioncall functionName="getSpriteRect"/>
+    <functioncall functionName="hWnd"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="imousePosition"/>
+    <functioncall functionName="length"/>
+    <functioncall functionName="long"/>
+    <functioncall functionName="move"/>
+    <functioncall functionName="newTicks"/>
+    <functioncall functionName="normalize"/>
+    <functioncall functionName="oldTicks"/>
+    <functioncall functionName="pos"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="quit"/>
+    <functioncall functionName="rand"/>
+    <functioncall functionName="rect1"/>
+    <functioncall functionName="renderer"/>
+    <functioncall functionName="setAcceleration"/>
+    <functioncall functionName="setAnimationSpeed"/>
+    <functioncall functionName="setPosition"/>
+    <functioncall functionName="setSize"/>
+    <functioncall functionName="setSpeed"/>
+    <functioncall functionName="short"/>
+    <functioncall functionName="spd"/>
+    <functioncall functionName="speed"/>
+    <functioncall functionName="sprite"/>
+    <functioncall functionName="sz"/>
+    <functioncall functionName="tex"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="v_Asteroids"/>
+    <functioncall functionName="vecToMouse"/>
+    <functioncall functionName="vecToTarget"/>
+    <functioncall functionName="version"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="window"/>
+    <functioncall functionName="wmInfo"/>
+    <functioncall functionName="x"/>
+    <functioncall functionName="y"/>
+  </FileInfo>
+</analyzerinfo>

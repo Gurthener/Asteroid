@@ -15,7 +15,6 @@ bool MakeWindowTransparent(SDL_Window* window, COLORREF colorKey) {
 
 	// Change window type to layered (https://stackoverflow.com/a/3970218/3357935)
 	SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
-
 	// Set transparency color
 	return SetLayeredWindowAttributes(hWnd, colorKey, 0, LWA_COLORKEY);
 }
@@ -28,9 +27,10 @@ int main(int argc, char** argv) {
 
 	for (size_t i = 0; i < count; i++) {
 		v_Asteroids.push_back(Asteroid({rand() % desktopWidth, rand() % desktopHeight},
-									   {rand() % 1000 - 500, rand() % 1000 - 500},
+									   {0, 0},
+									   //{rand() % 1000 - 500, rand() % 1000 - 500},
 									   {0,0},
-									   50,
+									   rand() % 128 + 1,
 									   1000));
 	}
 
@@ -59,35 +59,43 @@ int main(int argc, char** argv) {
 		SDL_GetGlobalMouseState(&imousePosition.x, &imousePosition.y);
 		glm::vec2 mousePosition = imousePosition;
 
-		for (auto &rock : v_Asteroids) {
+		for (auto& rock : v_Asteroids) {
 			rock.move(diffTicks);
 
+			auto size = rock.getRadius();
 			auto sprite = rock.getSpriteRect();
 			auto pos = rock.getPosition();
-			SDL_Rect rect1 = {pos.x - 64, pos.y - 64,
-			128, 128};
+			SDL_Rect rect1 = {pos.x - size, pos.y - size,
+			size * 2, size * 2};
 			SDL_RenderCopy(renderer, asteroid, &sprite, &rect1);
 		}
-		
+
 		for (auto& rock : v_Asteroids) {
-			rock.setAcceleration({0,0});
+			
+			//auto vecToMouse = mousePosition - rock.getPosition();
+			//float force = 10000.0f / /*pow(*/(glm::length(vecToMouse))/*, 2)*/;
+			//vecToMouse = glm::normalize(vecToMouse);
+			//vecToMouse *= force;
+		
+			auto mass = rock.getMass();
+			auto position = rock.getPosition();
+			auto acceleration = rock.setAcceleration({0,0}).getAcceleration();
 
 			for (auto& target : v_Asteroids) {
-				if (target.getPosition() != rock.getPosition()) {
-					auto vecToTarget = target.getPosition() - rock.getPosition();
-					float multiplier = 100000.0f / /*pow(*/(glm::length(vecToTarget) * 5)/*, 2)*/;
+				auto vecToTarget = target.getPosition() - position;
+				if (vecToTarget != glm::vec2(0,0)) {
+					float force = 1 * /*M_GravConst * */ mass * target.getMass() / (glm::length(vecToTarget) * glm::length(vecToTarget));
+					float acc = force / mass;
+
 					vecToTarget = glm::normalize(vecToTarget);
-					vecToTarget *= multiplier;
-					rock.setAcceleration(rock.getAcceleration() + vecToTarget);
+					vecToTarget *= acc;
+
+					acceleration += vecToTarget;
+					//rock.setAcceleration(rock.getAcceleration() + vecToTarget);
 				}
 			}
+			rock.setAcceleration(acceleration);
 		}
-
-		//auto vecToMouse = mousePosition - rock.getPosition();
-		//float multiplier = 10000000.0f / pow(glm::length(vecToMouse), 2);
-		//vecToMouse = glm::normalize(vecToMouse);
-		//vecToMouse *= multiplier;
-		//rock.setAcceleration(vecToMouse);
 
 		SDL_RenderPresent(renderer);
 
@@ -105,6 +113,12 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+Asteroid& Asteroid::setMass(float ms) {
+	mass = ms;
+	return *this;
+	// TODO: вставьте здесь оператор return
+}
+
 Asteroid& Asteroid::setPosition(glm::vec2 pos) {
 	position = pos;
 	return *this;
@@ -120,13 +134,8 @@ Asteroid& Asteroid::setAcceleration(glm::vec2 acc) {
 	return *this;
 }
 
-Asteroid& Asteroid::setTexture(std::string tex) {
-	texture = tex;
-	return *this;
-}
-
-Asteroid& Asteroid::setSize(float sz) {
-	size = sz;
+Asteroid& Asteroid::setRadius(float sz) {
+	radius = sz;
 	return *this;
 }
 
@@ -147,16 +156,16 @@ glm::vec2 Asteroid::getAcceleration() {
 	return acceleration;
 }
 
-std::string Asteroid::getTexture() {
-	return texture;
-}
-
-float Asteroid::getSize() {
-	return size;
+float Asteroid::getRadius() {
+	return radius;
 }
 
 float Asteroid::getAnimationSpeed() {
 	return animationSpeed;
+}
+
+float Asteroid::getMass() {
+	return mass;
 }
 
 Asteroid& Asteroid::move(Uint32 diffTicks) {
@@ -166,29 +175,24 @@ Asteroid& Asteroid::move(Uint32 diffTicks) {
 
 	position += speed * (diffTicks / 1000.0f);
 
-	bool collision = false;
-	if (position.x - size < 0) {
+	if (position.x - radius < 0) {
 		speed.x = abs(speed.x) * 0.5;
-		position.x = size;
-		//collision = true;
+		position.x = radius;
 	}
-
-	if (position.x + size > desktopWidth) {
+	
+	if (position.x + radius > desktopWidth) {
 		speed.x = -abs(speed.x) * 0.5;
-		position.x = desktopWidth - size;
-		//collision = true;
+		position.x = desktopWidth - radius;
 	}
-
-	if (position.y - size < 0) {
+	
+	if (position.y - radius < 0) {
 		speed.y = abs(speed.y) * 0.5;
-		position.y = size;
-		//collision = true;
+		position.y = radius;
 	}
-
-	if (position.y + size > desktopHeight) {
+	
+	if (position.y + radius > desktopHeight) {
 		speed.y = -abs(speed.y) * 0.5;
-		position.y = desktopHeight - size;
-		//collision = true;
+		position.y = desktopHeight - radius;
 	}
 
 	return *this;

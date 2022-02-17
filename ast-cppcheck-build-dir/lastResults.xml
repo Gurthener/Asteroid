@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.7"/>
+    <errors>
+        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;multiplier&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;multiplier&amp;#039; shadows outer variable" cwe="398" file0="Asteroid.cpp" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="83" info="Shadow variable"/>
+            <location file="Asteroid.cpp" line="75" info="Shadowed declaration"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;tex&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;tex&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" file0="Asteroid.cpp" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="122"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;diffTicks&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;diffTicks&amp;#039; is assigned a value that is never used." cwe="563" file0="Asteroid.cpp" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="47"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;collision&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;collision&amp;#039; is assigned a value that is never used." cwe="563" file0="Asteroid.cpp" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="168"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getAnimationSpeed&amp;#039; is never used." verbose="The function &amp;#039;getAnimationSpeed&amp;#039; is never used." cwe="561" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="157"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSize&amp;#039; is never used." verbose="The function &amp;#039;getSize&amp;#039; is never used." cwe="561" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="153"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSpeed&amp;#039; is never used." verbose="The function &amp;#039;getSpeed&amp;#039; is never used." cwe="561" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="141"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getTexture&amp;#039; is never used." verbose="The function &amp;#039;getTexture&amp;#039; is never used." cwe="561" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="149"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setTexture&amp;#039; is never used." verbose="The function &amp;#039;setTexture&amp;#039; is never used." cwe="561" sinceDate="16.02.2022">
+            <location file="Asteroid.cpp" line="122"/>
+        </error>
+    </errors>
+</results>

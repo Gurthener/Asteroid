@@ -1,0 +1,1 @@
+Asteroid.a1:Debug|Win32:C:/Users/gurth/source/repos/Asteroid/Asteroid.cpp

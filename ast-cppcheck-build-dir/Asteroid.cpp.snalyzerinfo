@@ -1,0 +1,17 @@
+Asteroid call:[setAcceleration,setAnimationSpeed,setPosition,setSize,setSpeed] noreturn:[setAnimationSpeed]
+MakeWindowTransparent call:[GetWindowLong,SDL_GetWindowWMInfo,SDL_VERSION,SetLayeredWindowAttributes,SetWindowLong] noreturn:[SetLayeredWindowAttributes]
+main global:[count,desktopHeight,desktopWidth,v_Asteroids] call:[Asteroid,GetSystemMetrics,IMG_Init,IMG_LoadTexture,MakeWindowTransparent,SDL_CreateRenderer,SDL_CreateWindow,SDL_DestroyWindow,SDL_GetGlobalMouseState,SDL_GetTicks,SDL_PollEvent,SDL_Quit,SDL_RenderClear,SDL_RenderCopy,SDL_RenderPresent,SDL_SetRenderDrawBlendMode,SDL_SetRenderDrawColor,SDL_SetTextureBlendMode,getAcceleration,getPosition,getSpriteRect,length,move,normalize,push_back,rand,setAcceleration] noreturn:[SDL_RenderCopy,push_back,setAcceleration]
+setPosition
+setSpeed
+setAcceleration
+setTexture
+setSize
+setAnimationSpeed
+getPosition
+getSpeed
+getAcceleration
+getTexture
+getSize
+getAnimationSpeed
+move call:[length,setAnimationSpeed] noreturn:[setAnimationSpeed]
+getSpriteRect call:[SDL_GetTicks]
